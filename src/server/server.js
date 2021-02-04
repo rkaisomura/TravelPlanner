@@ -42,8 +42,8 @@ app.get('/travelinfo', function (req, resp) {
 app.post('/travelinfo', (req, resp) => {
   projectData = {
     date: req.body.date,
-    temp: req.body.temperature,
-    place: req.body.place,
+    lat: req.body.lat,
+    lng: req.body.lng,
     textFeeling: req.body.textFeeling
   }
   console.log(projectData);

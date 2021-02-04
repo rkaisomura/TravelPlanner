@@ -4,6 +4,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
     entry: './src/client/index.js',
@@ -34,6 +35,7 @@ module.exports = {
             template: "./src/client/view/index.html",
             filename: "./index.html",
         }),
-        new MiniCssExtractPlugin({ filename: "main.css" })
+        new MiniCssExtractPlugin({ filename: "main.css" }),
+        new Dotenv()
     ]
 }
