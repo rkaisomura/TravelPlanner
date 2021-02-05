@@ -2,6 +2,8 @@
 
 const userName = process.env.user_geoname;
 const APIWeatherBit = process.env.API_Weathebit_Key;
+const APIPixaBay = process.env.API_Pixabay_Key;
+console.log(APIPixaBay);
 
 
 // Event listener to add function to existing HTML DOM element
@@ -10,7 +12,6 @@ document.getElementById('generate').addEventListener('click', performAction);
 /* Function called by event listener */
 function performAction(e){
     
-
     //How soon the trip is in days
     const dtDeparture = new Date (document.getElementById('date').value);
     const dtActual = new Date(); // Create a new date instance dynamically with JS
@@ -21,17 +22,16 @@ function performAction(e){
     const city =  document.getElementById('city').value;
  
     const baseURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=${userName}`; 
-    
     getCity(baseURL)
     // New Syntax!
     .then(function (data){
-        //console.log({'lat':data.geonames[0].lat, 'lng':data.geonames[0].lng, 'country':data.geonames[0].countryName});
+        
         const lat = data.geonames[0].lat;
         const lng = data.geonames[0].lng;
         const country = data.geonames[0].countryName;
         console.log(lat, lng, country);
-        //postData('/travelinfo', {'lat':data.geonames[0].lat, 'lng':data.geonames[0].lng, 'country':data.geonames[0].countryName});
-
+        
+               
         const weatherUrl = `http://api.weatherbit.io/v2.0/forecast/daily?NC&key=${APIWeatherBit}&lat=${lat}&lon=${lng}`;
         getWeather(weatherUrl)
         .then(function(weatherData){
@@ -39,6 +39,15 @@ function performAction(e){
             const date = weatherData.data[0].datetime;
             console.log(temp,date);
         });
+
+        const imageUrl = `http://pixabay.com/api/?key=${APIPixaBay}&q=${city}&image_type=photo`;
+        getImage(imageUrl)
+        .then(function(imageData){
+            const image = imageData.hits[0].webformatURL;
+            console.log(image);
+        });
+
+        postData('/travelinfo', {lat, lng, temp, date, image});
     })
 
     
@@ -91,6 +100,18 @@ const getWeather = async (weatherUrl) => {
     }
 }
 
+const getImage = async (imageUrl) => {
+    const resp = await fetch (imageUrl);
+    console.log(resp);
+    try {
+        const imageData = await resp.json();
+        console.log(imageData);
+        return imageData;
+    } catch (error) {
+        console.log ('Error', error);
+    }
+}
+
 
   
 // Async POST
@@ -117,3 +138,4 @@ export { updateUI }
 export { getCity }
 export { postData }
 export { getWeather }
+export { getImage }

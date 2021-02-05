@@ -39,7 +39,8 @@ app.post('/travelinfo', (req, resp) => {
     lng: req.body.lng,
     country: req.body.countryName,
     temp: req.body.temp,
-    date: req.body.date
+    date: req.body.date,
+    image: req.body.image,
   }
   console.log(projectData);
   resp.send(projectData);
