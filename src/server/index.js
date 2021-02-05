@@ -32,19 +32,20 @@ const server = app.listen(port, ()=> {
 })
 
 
+// POST route
+app.post('/travelinfo', (req, resp) => {
+  projectData = {
+    lat: req.body.lat,
+    lng: req.body.lng,
+    country: req.body.countryName,
+    temp: req.body.temp,
+    date: req.body.date
+  }
+  console.log(projectData);
+  resp.send(projectData);
+})
+
 // GET route which returns projectData
 app.get('/travelinfo', function (req, resp) {   
   resp.send(projectData);
 });
-
-
-// POST route
-app.post('/travelinfo', (req, resp) => {
-  projectData = {
-    date: req.body.date,
-    lat: req.body.lat,
-    lng: req.body.lng,
-    textFeeling: req.body.textFeeling
-  }
-  console.log(projectData);
-})
