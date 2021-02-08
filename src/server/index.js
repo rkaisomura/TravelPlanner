@@ -19,7 +19,7 @@ app.use(cors());
 
 // Initialize the main project folder
 app.use(express.static('dist'));
-const port = 8000;
+const port = 8080;
 
 app.get('/', function (req, res) {
   res.sendFile('dist/index.html');

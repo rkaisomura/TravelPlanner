@@ -3,7 +3,6 @@
 const userName = process.env.user_geoname;
 const APIWeatherBit = process.env.API_Weathebit_Key;
 const APIPixaBay = process.env.API_Pixabay_Key;
-console.log(APIPixaBay);
 
 
 // Event listener to add function to existing HTML DOM element
@@ -30,6 +29,7 @@ function performAction(e){
         const lng = data.geonames[0].lng;
         const country = data.geonames[0].countryName;
         console.log(lat, lng, country);
+        postData('/travelinfo', {lat, lng, country});
         
                
         const weatherUrl = `http://api.weatherbit.io/v2.0/forecast/daily?NC&key=${APIWeatherBit}&lat=${lat}&lon=${lng}`;
@@ -38,6 +38,7 @@ function performAction(e){
             const temp = weatherData.data[0].temp;
             const date = weatherData.data[0].datetime;
             console.log(temp,date);
+            postData('/travelinfo', {temp, date});
         });
 
         const imageUrl = `http://pixabay.com/api/?key=${APIPixaBay}&q=${city}&image_type=photo`;
@@ -45,9 +46,8 @@ function performAction(e){
         .then(function(imageData){
             const image = imageData.hits[0].webformatURL;
             console.log(image);
+            postData('/travelinfo', {image});
         });
-
-        postData('/travelinfo', {lat, lng, temp, date, image});
     })
 
     
@@ -64,9 +64,10 @@ const updateUI = async() => {
     try {
         const info = await req.json();
         document.getElementById('date').innerHTML = info.date;
-        document.getElementById('temp').innerHTML = 'Actual temperature: ' + info.temp + ' °F';
+        document.getElementById('temp').innerHTML = 'Actual temperature: ' + info.temp + ' °C';
         document.getElementById('place').innerHTML = 'Place: ' + info.place;
-        document.getElementById('daystrip').innerHTML =  info.city + ',' + info.countryName + 'is'  + info.result + 'days away';
+        document.getElementById('daystotrip').innerHTML =  info.city + ',' + info.countryName + 'is'  + info.result + 'days away';
+        document.getElementById('placeimage').innerHTML = info.image;
     }
     catch (error) {
         console.log("error", error);
@@ -112,11 +113,10 @@ const getImage = async (imageUrl) => {
     }
 }
 
-
   
 // Async POST
-const postData = async (url, data = {})=>{
-    const resp = await fetch(url, {
+async function postData(data) {
+    const resp = await fetch('http://localhost:8080/travelinfo', {
         method: 'POST', 
         credentials: 'same-origin', 
         mode: 'cors',
