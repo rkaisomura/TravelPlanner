@@ -6,6 +6,7 @@ import { getWeather } from './js/app'
 import { getImage } from './js/app'
 
 import './style/style.scss'
+import '../client/js/packinglist'
 
 export {
     performAction,

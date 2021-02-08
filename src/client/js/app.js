@@ -50,11 +50,10 @@ function performAction(e){
         });
     })
 
-    
-    
-    /* .then (function (newData){
+      
+    .then (function (newData){
         updateUI();
-    }); */
+    });
 };
 
 //Update UI

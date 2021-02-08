@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class = imgBox>
-            <img src="./weather.jpg" alt="Weather">
+            <img src="../img/weather.jpg" alt="Weather">
         </div>
         <div id = "app">
             <div class ="holder headline">
@@ -32,8 +32,14 @@
                     <div id = "placeimage"></div>
                 </div>
             </div>
+            <h2> Packing list</h2>
+            <form>
+                <input id = "item" placeholder = "New item" type = "text">
+                <input id = "submit" type="submit">
+            </form>
+            <ul id = "packing"></ul><br>
             <button onclick="window.print()">Print this page</button>
         </div>
-    <script src="app.js" type="text/javascript"></script>
+    <!-- <script src="../js/app.js" type="text/javascript"></script> -->
     </body>
 </html>
