@@ -4,17 +4,17 @@
         <meta charset="UTF-8">
         <title>Trip Planner</title>
         <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/8ce56cb25f.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class = imgBox>
-            <img src="../img/weather.jpg" alt="Weather">
-        </div>
         <div id = "app">
             <div class ="holder headline">
                 <h1>Travel Planner</h1>
             </div>
             <div class ="holder trip">
-                <label for="trip">My trip to:</label>
+                <label for="trip">My trip to (city):</label>
                 <input type="text" id="city" placeholder="Enter location">
             </div><br>
             <div class ="holder departure">
@@ -22,24 +22,33 @@
                 <input type="date" class= "myInput" id="date">
             </div><br>
             <button id="generate" type = "submit"> Generate </button><br>
-            <div class ="holder-entry">
-                <div class = "title">Trip Information</div><br>
-                <div id = "entryHolder">
-                    <div id = "date"></div>
-                    <div id = "temp"></div>
-                    <div id = "place"></div>
-                    <div id = "daystotrip"></div>
-                    <div id = "placeimage"></div>
-                </div>
+        </div>
+        <div class ="holder-entry">
+            <div class = "title">Trip Information</div><br>
+            <div id = "entryHolder">
+                <div id = "date"></div>
+                <div id = "temp"></div>
+                <div id = "place"></div>
+                <div id = "daystotrip"></div>
+                <div id = "placeimage"></div>
             </div>
-            <h2> Packing list</h2>
+            <button class="print" onclick="window.print()"><i class="fas fa-print"></i> Print this page</button>
+        </div>
+        <div class = "packinglist">
+            <h2 class="title"> Packing list</h2>
             <form>
                 <input id = "item" placeholder = "New item" type = "text">
                 <input id = "submit" type="submit">
             </form>
             <ul id = "packing"></ul><br>
-            <button onclick="window.print()">Print this page</button>
-        </div>
-    <!-- <script src="../js/app.js" type="text/javascript"></script> -->
+    </div>
     </body>
+    <footer>
+        <p>References:</p><br>
+        <ul>
+            <li>GeoNames</li>
+            <li>Weatherbit</li>
+            <li>Pixabay</li>
+        </ul>
+    </footer>
 </html>

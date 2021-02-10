@@ -17,6 +17,14 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(png|svg|jpg|gif)$/i,
+                use: [
+                   {
+                    loader: 'file-loader',
+                    }
+                ],
+            },
+            {
                 test: '/\.js$/',
                 exclude: /node_modules/,
                 loader: "babel-loader"

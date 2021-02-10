@@ -35,6 +35,7 @@ const server = app.listen(port, ()=> {
 // POST route
 app.post('/travelinfo', (req, resp) => {
   projectData = {
+    result: req.body.result,
     lat: req.body.lat,
     lng: req.body.lng,
     country: req.body.countryName,
