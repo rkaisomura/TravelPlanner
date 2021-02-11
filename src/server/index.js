@@ -31,6 +31,11 @@ const server = app.listen(port, ()=> {
     console.log(`Running on localhost: ${port}`);
 })
 
+// GET route which returns projectData
+app.get('/travelinfo', function (req, resp) {  
+  console.log('get here'); 
+  resp.send(projectData);
+});
 
 // POST route
 app.post('/travelinfo', (req, resp) => {
@@ -38,7 +43,8 @@ app.post('/travelinfo', (req, resp) => {
     result: req.body.result,
     lat: req.body.lat,
     lng: req.body.lng,
-    country: req.body.countryName,
+    country: req.body.country,
+    city: req.body.city,
     temp: req.body.temp,
     date: req.body.date,
     image: req.body.image,
@@ -46,8 +52,3 @@ app.post('/travelinfo', (req, resp) => {
   console.log(projectData);
   resp.send(projectData);
 })
-
-// GET route which returns projectData
-app.get('/travelinfo', function (req, resp) {   
-  resp.send(projectData);
-});

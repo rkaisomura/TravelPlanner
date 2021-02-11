@@ -25,7 +25,7 @@ function performAction(e){
         const lng = data.geonames[0].lng;
         const country = data.geonames[0].countryName;
         console.log(lat, lng, country);
-        postData('/travelinfo', {lat, lng, country});
+        postData('/travelinfo', {lat, lng, country, city});
         
         //Weatherbit API: getting the temperature based on latitude and longitude
         const weatherUrl = `http://api.weatherbit.io/v2.0/forecast/daily?NC&key=${APIWeatherBit}&lat=${lat}&lon=${lng}`;
@@ -54,15 +54,15 @@ function performAction(e){
 
 //Update UI
 const updateUI = async() => {
-    url = "/travelinfo";
+    const url = '/travelinfo';
     const req = await fetch (url);
     try {
         const info = await req.json();
         document.getElementById('placeimage').innerHTML = info.image;
-        document.getElementById('place').innerHTML = 'My trip to: ' + info.place;
+        document.getElementById('place').innerHTML = 'My trip to: ' + info.city;
         document.getElementById('date').innerHTML = 'Departing: ' + info.date;
-        document.getElementById('daystotrip').innerHTML =  info.city + ',' + info.countryName + 'is'  + info.result + 'days away';
         document.getElementById('temp').innerHTML = 'Actual temperature: ' + info.temp + '°C';
+        document.getElementById('daystotrip').innerHTML =  info.city + ', ' + info.country + ' is '  + info.result + ' days away';
     }
     catch (error) {
         console.log("error", error);
@@ -108,8 +108,8 @@ const getImage = async (imageUrl) => {
 }
   
 // Async POST
-async function postData(data) {
-    const resp = await fetch('http://localhost:8080/travelinfo', {
+async function postData(url, data) {
+    const resp = await fetch(url, {
         method: 'POST', 
         credentials: 'same-origin', 
         mode: 'cors',
@@ -125,6 +125,15 @@ async function postData(data) {
         console.log ('Error', error);
     }
 }
+
+//Top function
+document.addEventListener('click', event => {
+    const element = event.target;
+    if(element.className === 'top'){
+        document.documentElement.scrollTop = 0;
+    }
+})
+
 
 export { performAction }
 export { updateUI }

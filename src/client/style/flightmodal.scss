@@ -1,0 +1,28 @@
+.flightmodal{
+    display: none;
+    position: fixed;
+    width: 375px;
+    height: 100px;
+    background-color: white;
+    border: solid 1px #000;
+    top: 50%;
+    .modalinfo{
+        position: relative;
+        width: 350px;
+        text-align: center;
+        margin: 10px;
+    }
+    .close{
+        float:right;
+        font-weight: bold;
+        font-size: 30px;
+    }
+    .close:hover{
+        cursor: pointer;
+    }
+    #saveflight{
+        height: 20px;
+        width: 50px;
+        font-size: 15px;
+    }
+}
