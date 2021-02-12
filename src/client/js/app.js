@@ -34,7 +34,7 @@ function performAction(e){
             const temp = weatherData.data[0].temp;
             const date = weatherData.data[0].datetime;
             console.log(temp,date);
-            postData('/travelinfo', {temp, date});
+            await postData('/travelinfo', {temp, date});
         });
 
         //Pixabay API: getting the image from the place
@@ -43,7 +43,7 @@ function performAction(e){
         .then(function(imageData){
             const image = imageData.hits[0].webformatURL;
             console.log(image);
-            postData('/travelinfo', {image});
+            await postData('/travelinfo', {image});
         });
     })
     // Call the upadteUI function with new data     
@@ -58,9 +58,9 @@ const updateUI = async() => {
     const req = await fetch (url);
     try {
         const info = await req.json();
-        document.getElementById('placeimage').innerHTML = info.image;
+        document.getElementById('placeimage').innerHTML = `<img src="${info.image}" alt="Place image">`;
         document.getElementById('place').innerHTML = 'My trip to: ' + info.city;
-        document.getElementById('date').innerHTML = 'Departing: ' + info.date;
+        document.getElementById('datedeparture').innerHTML = 'Departing: ' + info.date;
         document.getElementById('temp').innerHTML = 'Actual temperature: ' + info.temp + '°C';
         document.getElementById('daystotrip').innerHTML =  info.city + ', ' + info.country + ' is '  + info.result + ' days away';
     }

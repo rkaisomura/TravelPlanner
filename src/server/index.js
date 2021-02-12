@@ -40,14 +40,8 @@ app.get('/travelinfo', function (req, resp) {
 // POST route
 app.post('/travelinfo', (req, resp) => {
   projectData = {
-    result: req.body.result,
-    lat: req.body.lat,
-    lng: req.body.lng,
-    country: req.body.country,
-    city: req.body.city,
-    temp: req.body.temp,
-    date: req.body.date,
-    image: req.body.image,
+    ...req.body,
+    ...projectData
   }
   console.log(projectData);
   resp.send(projectData);
