@@ -1,0 +1,18 @@
+.plannedtrip{
+    display: flex;
+    flex-direction: column;
+    .box {
+        height: 300px;
+        width: 700px;
+        border: solid 1px black;
+        display: flex;
+        flex-direction: row;
+    }
+        .card{
+            width: 150px;
+            height: 250px;
+            text-align: center;
+            background-color: white;
+            margin: 10px;
+        }
+}

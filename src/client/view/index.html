@@ -53,24 +53,34 @@
             <div class = "title">Trip Information</div><br>
             <div id = "entryHolder">
                 <div id = "placeimage"></div>
-                <div id = "place"></div>
-                <div id = "datedeparture"></div>
-                <div id = "temp"></div>
-                <div id = "daystotrip"></div>
-                <div id = "airportcontent"></div>
-                <div id = "flightcontent"></div>
+                <div class="infobox">
+                    <div id = "place"></div>
+                    <div id = "datedeparture"></div>
+                    <div id = "temp"></div>
+                    <div id = "daystotrip"></div>
+                    <div id = "airportcontent"></div>
+                    <div id = "flightcontent"></div>
+                </div>
+                <button class="save">Save</button>
+                <button class="removetripinfo">Remove</button>
             </div>
-            <button class="save">Save</button>
             <button class="print" onclick="window.print()"><i class="fas fa-print"></i> Print this page</button>
         </div>
         <div class = "packinglist">
             <h2 class="title"> Packing list</h2>
             <form>
                 <input id = "item" placeholder = "New item" type = "text">
-                <input id = "submit" type="submit">
+                <button id = "submit" type="submit">Add</button>
             </form>
             <ul id = "packing"></ul><br>
-    </div>
+        </div>
+        <div class = "plannedtrip">
+            <h2 class="title"> Planned Trip</h2>
+            <div class="box">
+                <div class="card">Trip 1</div>
+                <div class="card">Trip 2</div>
+            </div>
+        </div>
     </body>
     <footer>
         <h4>API References:</h4>

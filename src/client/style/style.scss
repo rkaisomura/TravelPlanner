@@ -111,16 +111,12 @@ h1{
     cursor: pointer;
 }
 
-.save {
-    height: 30px;
-    width: 80px;
-    margin-bottom: 5px;
-    font-size: 20px;
+.plannedtrip {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0efeb;
 }
-.print{
-    margin-top: 10px;
-}
-
 
 /* Reset style for HTML element on active to have no border*/
 input:focus,

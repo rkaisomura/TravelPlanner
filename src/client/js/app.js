@@ -58,11 +58,11 @@ const updateUI = async() => {
     const req = await fetch (url);
     try {
         const info = await req.json();
-        document.getElementById('placeimage').innerHTML = `<img src="${info.image}" alt="Place image">`;
-        document.getElementById('place').innerHTML = 'My trip to: ' + info.city;
+        document.getElementById('placeimage').innerHTML = `<img src="${info.image}" alt="Place image" id="photo">`;
+        document.getElementById('place').innerHTML = 'My trip to: ' + info.city.toUpperCase();
         document.getElementById('datedeparture').innerHTML = 'Departing: ' + info.date;
         document.getElementById('temp').innerHTML = 'Actual temperature: ' + info.temp + '°C';
-        document.getElementById('daystotrip').innerHTML =  info.city + ', ' + info.country + ' is '  + info.result + ' days away';
+        document.getElementById('daystotrip').innerHTML =  info.city.toUpperCase() + ', ' + info.country + ' is '  + info.result + ' days away';
     }
     catch (error) {
         console.log("error", error);

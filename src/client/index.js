@@ -11,6 +11,7 @@ import './style/footer.scss'
 import './style/tripinfo.scss'
 import './style/flightmodal.scss'
 import './style/airportmodal.scss'
+import './style/plannedtrip.scss'
 
 import '../client/js/packinglist'
 import '../client/js/airportinfo'
