@@ -1,12 +1,14 @@
+//Show modal for the user to info the flight info - it is just a text input
+
 document.addEventListener('click', event => {
     const element = event.target;
     
     if(element.className === 'flightinfo'){
         const modal = document.getElementById("flightmodal");
-        const close = document.getElementsByClassName("close")[0];
+        const closeflight = document.getElementsByClassName("close")[0];
         const save = document.getElementById("saveflight");
         modal.style.display = "block";
-        close.onclick = function() {
+        closeflight.onclick = function() {
             modal.style.display = "none";
         }
         save.onclick = function() {

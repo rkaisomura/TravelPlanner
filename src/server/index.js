@@ -19,7 +19,7 @@ app.use(cors());
 
 // Initialize the main project folder
 app.use(express.static('dist'));
-const port = 8080;
+const port = 8081;
 
 app.get('/', function (req, res) {
   res.sendFile('dist/index.html');
@@ -33,7 +33,6 @@ const server = app.listen(port, ()=> {
 
 // GET route which returns projectData
 app.get('/travelinfo', function (req, resp) {  
-  console.log('get here'); 
   resp.send(projectData);
 });
 

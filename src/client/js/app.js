@@ -20,17 +20,17 @@ function performAction(e){
     const city =  document.getElementById('city').value;
     const baseURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=${userName}`; 
     getCity(baseURL)
-    .then(function (data){
+    .then(async function (data){
         const lat = data.geonames[0].lat;
         const lng = data.geonames[0].lng;
         const country = data.geonames[0].countryName;
         console.log(lat, lng, country);
-        postData('/travelinfo', {lat, lng, country, city});
+        await postData('/travelinfo', {lat, lng, country, city});
         
         //Weatherbit API: getting the temperature based on latitude and longitude
         const weatherUrl = `http://api.weatherbit.io/v2.0/forecast/daily?NC&key=${APIWeatherBit}&lat=${lat}&lon=${lng}`;
         getWeather(weatherUrl)
-        .then(function(weatherData){
+        .then(async function(weatherData){
             const temp = weatherData.data[0].temp;
             const date = weatherData.data[0].datetime;
             console.log(temp,date);
@@ -40,7 +40,7 @@ function performAction(e){
         //Pixabay API: getting the image from the place
         const imageUrl = `http://pixabay.com/api/?key=${APIPixaBay}&q=${city}&image_type=photo`;
         getImage(imageUrl)
-        .then(function(imageData){
+        .then(async function(imageData){
             const image = imageData.hits[0].webformatURL;
             console.log(image);
             await postData('/travelinfo', {image});
@@ -69,6 +69,18 @@ const updateUI = async() => {
     }
 }
 
+// Cancel button function from trip info
+/* document.getElementById('canceltripinfo').addEventListener('click', canceltripinfo);
+
+function canceltripinfo() {
+    document.getElementById('placeimage').innerHTML = "";
+    document.getElementById('place').innerHTML = "";
+    document.getElementById('datedeparture').innerHTML = "";
+    document.getElementById('temp').innerHTML = "";
+    document.getElementById('daystotrip').innerHTML = "";
+    document.getElementById('city').value = "";
+    document.getElementById('date').value = "";
+} */
 
 // Async GET
 const getCity = async (baseURL) => {
@@ -134,10 +146,10 @@ document.addEventListener('click', event => {
     }
 })
 
-
 export { performAction }
 export { updateUI }
 export { getCity }
 export { postData }
 export { getWeather }
 export { getImage }
+//export { canceltripinfo }

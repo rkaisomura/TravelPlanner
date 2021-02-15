@@ -1,5 +1,6 @@
-const airportKey = process.env.API_AirLabs_Key;
+//Show modal for the user to select the airport
 
+const airportKey = process.env.API_AirLabs_Key;
 
 document.addEventListener('click', event => {
     const element = event.target;
