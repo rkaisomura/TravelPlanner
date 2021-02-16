@@ -14,27 +14,27 @@ function performAction(e){
     const dtActual = new Date(); // Create a new date instance dynamically with JS
     const result = Math.floor((Date.UTC(dtDeparture.getFullYear(), dtDeparture.getMonth(), dtDeparture.getDate()) - Date.UTC(dtActual.getFullYear(), dtActual.getMonth(), dtActual.getDate())) / (1000 * 3600 * 24));
     console.log(result);
-    postData('/travelinfo', {result});
+    postData('/travelinfo', {result, dtDeparture});
 
     //Geonames API: getting the latitude, longitude and country name from the name of the city
     const city =  document.getElementById('city').value;
     const baseURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=${userName}`; 
     getCity(baseURL)
-    .then(async function (data){
+    .then(function (data){
         const lat = data.geonames[0].lat;
         const lng = data.geonames[0].lng;
         const country = data.geonames[0].countryName;
         console.log(lat, lng, country);
-        await postData('/travelinfo', {lat, lng, country, city});
+        postData('/travelinfo', {lat, lng, country, city});
         
         //Weatherbit API: getting the temperature based on latitude and longitude
         const weatherUrl = `http://api.weatherbit.io/v2.0/forecast/daily?NC&key=${APIWeatherBit}&lat=${lat}&lon=${lng}`;
         getWeather(weatherUrl)
         .then(async function(weatherData){
             const temp = weatherData.data[0].temp;
-            const date = weatherData.data[0].datetime;
-            console.log(temp,date);
-            await postData('/travelinfo', {temp, date});
+            //const date = weatherData.data[0].datetime;
+            console.log(temp);
+            await postData('/travelinfo', {temp});
         });
 
         //Pixabay API: getting the image from the place
@@ -47,8 +47,8 @@ function performAction(e){
         });
     })
     // Call the upadteUI function with new data     
-    .then (function (newData){
-        updateUI();
+    .then (async function (newData){
+        await updateUI();
     });
 };
 
@@ -60,7 +60,7 @@ const updateUI = async() => {
         const info = await req.json();
         document.getElementById('placeimage').innerHTML = `<img src="${info.image}" alt="Place image" id="photo">`;
         document.getElementById('place').innerHTML = 'My trip to: ' + info.city.toUpperCase();
-        document.getElementById('datedeparture').innerHTML = 'Departing: ' + info.date;
+        document.getElementById('datedeparture').innerHTML = 'Departing: ' + info.dtDeparture;
         document.getElementById('temp').innerHTML = 'Actual temperature: ' + info.temp + '°C';
         document.getElementById('daystotrip').innerHTML =  info.city.toUpperCase() + ', ' + info.country + ' is '  + info.result + ' days away';
     }
