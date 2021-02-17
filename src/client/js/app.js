@@ -69,18 +69,50 @@ const updateUI = async() => {
     }
 }
 
-// Cancel button function from trip info
-/* document.getElementById('canceltripinfo').addEventListener('click', canceltripinfo);
+// Save button function from trip info
+/* document.getElementById('save').addEventListener('click', saveTripInfo);
 
-function canceltripinfo() {
-    document.getElementById('placeimage').innerHTML = "";
+function saveTripInfo() {
+    if (typeof(Storage) !== "undefined") {
+        localStorage.placeimage = document.getElementById('place').value;
+        const card = document.createElement(`div class='card'`);
+        document.getElementsByClassName("card").innerHTML = localStorage.place;
+        document.querySelector('#box').append(card);
+        document.querySelector('place').value = '';
+    } else {
+        document.getElementsByClassName("card").innerHTML = "Sorry, it's not possible to storage the data...";
+    }
+} */
+
+
+// Cancel button function from trip info
+/* /* document.getElementById('canceltripinfo').addEventListener('click', cancelTripInfo);
+const urlCancel = '/travelinfo';
+
+async function cancelTripInfo(urlCancel) {
+    const resp = await fetch(urlCancel, {
+        method: 'DELETE', 
+        //credentials: 'same-origin', 
+        //mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data), // body data type must match "Content-Type" header        
+    });
+    try{
+        const resData = await resp.json();
+        return resData;
+    } catch (error) {
+        console.log ('Error', error);
+    } */
+    /* document.getElementById('placeimage').innerHTML = "";
     document.getElementById('place').innerHTML = "";
     document.getElementById('datedeparture').innerHTML = "";
     document.getElementById('temp').innerHTML = "";
     document.getElementById('daystotrip').innerHTML = "";
     document.getElementById('city').value = "";
     document.getElementById('date').value = "";
-} */
+}  */
 
 // Async GET
 const getCity = async (baseURL) => {
@@ -152,4 +184,5 @@ export { getCity }
 export { postData }
 export { getWeather }
 export { getImage }
-//export { canceltripinfo }
+//export { saveTripInfo }
+//export { cancelTripInfo }

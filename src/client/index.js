@@ -5,7 +5,8 @@ import { postData } from './js/app'
 import { getWeather } from './js/app'
 import { getImage } from './js/app'
 import { getAirport } from './js/airportinfo'
-//import { canceltripinfo } from './js/app'
+//import { saveTripInfo } from './js/app'
+//import { cancelTripInfo } from './js/app'
 
 import './style/style.scss'
 import './style/footer.scss'
@@ -27,5 +28,6 @@ export {
     getWeather,
     getImage,
     getAirport,
-   // canceltripinfo,
+    //saveTripInfo,
+    //cancelTripInfo,
 }

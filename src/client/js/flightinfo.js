@@ -5,7 +5,7 @@ document.addEventListener('click', event => {
     
     if(element.className === 'flightinfo'){
         const modal = document.getElementById("flightmodal");
-        const closeflight = document.getElementsByClassName("close")[0];
+        const closeflight = document.getElementsByClassName("closeflight")[0];
         const save = document.getElementById("saveflight");
         modal.style.display = "block";
         closeflight.onclick = function() {

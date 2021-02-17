@@ -5,12 +5,12 @@ const airportKey = process.env.API_AirLabs_Key;
 document.addEventListener('click', event => {
     const element = event.target;
     if(element.className === 'airportinfo'){
-        const modal = document.getElementById("airportmodal");
+        const airportmodal = document.getElementById("airportmodal");
         const close = document.getElementsByClassName("close")[0];
         const save = document.getElementById("saveairport");
-        modal.style.display = "block";
+        airportmodal.style.display = "block";
         close.onclick = function() {
-            modal.style.display = "none";
+            airportmodal.style.display = "none";
         }
 
         //List of airports
@@ -31,6 +31,7 @@ document.addEventListener('click', event => {
         save.onclick = function() {
             const info = document.getElementById('airportname').value;
             document.getElementById('airportcontent').innerHTML = 'Airport information: ' + info;
+            airportmodal.style.display = "none";
             document.querySelector('#airportname').remove(option);
         }
     }
