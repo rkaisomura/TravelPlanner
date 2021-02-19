@@ -20,12 +20,12 @@ function performAction(e){
     const city =  document.getElementById('city').value;
     const baseURL = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=${userName}`; 
     getCity(baseURL)
-    .then(function (data){
+    .then(async function (data){
         const lat = data.geonames[0].lat;
         const lng = data.geonames[0].lng;
         const country = data.geonames[0].countryName;
         console.log(lat, lng, country);
-        postData('/travelinfo', {lat, lng, country, city});
+        await postData('/travelinfo', {lat, lng, country, city});
         
         //Weatherbit API: getting the temperature based on latitude and longitude
         const weatherUrl = `http://api.weatherbit.io/v2.0/forecast/daily?NC&key=${APIWeatherBit}&lat=${lat}&lon=${lng}`;
@@ -47,8 +47,8 @@ function performAction(e){
         });
     })
     // Call the upadteUI function with new data     
-    .then (async function (newData){
-        await updateUI();
+    .then (function (newData){
+        updateUI();
     });
 };
 
@@ -68,51 +68,6 @@ const updateUI = async() => {
         console.log("error", error);
     }
 }
-
-// Save button function from trip info
-/* document.getElementById('save').addEventListener('click', saveTripInfo);
-
-function saveTripInfo() {
-    if (typeof(Storage) !== "undefined") {
-        localStorage.placeimage = document.getElementById('place').value;
-        const card = document.createElement(`div class='card'`);
-        document.getElementsByClassName("card").innerHTML = localStorage.place;
-        document.querySelector('#box').append(card);
-        document.querySelector('place').value = '';
-    } else {
-        document.getElementsByClassName("card").innerHTML = "Sorry, it's not possible to storage the data...";
-    }
-} */
-
-
-// Cancel button function from trip info
-/* /* document.getElementById('canceltripinfo').addEventListener('click', cancelTripInfo);
-const urlCancel = '/travelinfo';
-
-async function cancelTripInfo(urlCancel) {
-    const resp = await fetch(urlCancel, {
-        method: 'DELETE', 
-        //credentials: 'same-origin', 
-        //mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data), // body data type must match "Content-Type" header        
-    });
-    try{
-        const resData = await resp.json();
-        return resData;
-    } catch (error) {
-        console.log ('Error', error);
-    } */
-    /* document.getElementById('placeimage').innerHTML = "";
-    document.getElementById('place').innerHTML = "";
-    document.getElementById('datedeparture').innerHTML = "";
-    document.getElementById('temp').innerHTML = "";
-    document.getElementById('daystotrip').innerHTML = "";
-    document.getElementById('city').value = "";
-    document.getElementById('date').value = "";
-}  */
 
 // Async GET
 const getCity = async (baseURL) => {
@@ -184,5 +139,3 @@ export { getCity }
 export { postData }
 export { getWeather }
 export { getImage }
-//export { saveTripInfo }
-//export { cancelTripInfo }

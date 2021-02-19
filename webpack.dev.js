@@ -14,14 +14,14 @@ module.exports = {
     },
     devtool: 'source-map',
     stats: 'verbose',
-    devServer: {
+     devServer: {
         host: 'localhost',
         proxy: {
             context: () => true,
             target: "http://localhost:8081",
             secure: false
         }
-    },
+    }, 
     module: {
         rules: [
             {
