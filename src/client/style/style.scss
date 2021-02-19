@@ -112,17 +112,9 @@ h1{
     cursor: pointer;
 }
 
-.plannedtrip {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0efeb;
-}
-
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
-textarea:focus,
 button:focus {
     outline: none;
 }
@@ -140,19 +132,4 @@ button:focus {
 ::-ms-input-placeholder { /* Microsoft Edge */ 
     color: #cdb4db; 
     font-family: $fontPlaceholder;
-} 
-
-@media (max-width: 750px){
-    
-    #app {
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-
-    .holder-entry {
-        background: white;
-        width: 50%;
-        height: 25%;
-    }
 }

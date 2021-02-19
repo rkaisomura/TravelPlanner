@@ -16,6 +16,7 @@ import './style/variables.scss'
 import '../client/js/packinglist'
 import '../client/js/airportinfo'
 import '../client/js/flightinfo'
+import '../client/js/app'
 
 export {
     performAction,
