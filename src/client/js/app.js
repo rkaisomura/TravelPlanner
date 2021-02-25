@@ -37,10 +37,19 @@ function performAction(e){
             const weatherUrl = `http://api.weatherbit.io/v2.0/forecast/daily?NC&key=${APIWeatherBit}&lat=${lat}&lon=${lng}`;
             getWeather(weatherUrl)
             .then(async (weatherData) => {
+                //If the departure date is in a week, the temperatue is the actual one
+                if (result <= 7) {
                 const temp = weatherData.data[0].temp;
-                //const date = weatherData.data[0].datetime;
                 console.log(temp);
                 await postData('/travelinfo', {temp});
+                } else {
+                    const predForecast = weatherData.data[8].temp; //The predicted forecast is the 9th day based on the departure date
+                    console.log(predForecast);
+                    await postData('/travelinfo', {predForecast});
+                }
+            })
+            .then (async (newData) => {
+                await updateUI();
             });
 
             //Pixabay API: getting the image from the place
@@ -50,12 +59,15 @@ function performAction(e){
                 const image = imageData.hits[10].webformatURL;
                 console.log(image);
                 await postData('/travelinfo', {image});
+            })
+            .then (async (newData) => {
+                await updateUI();
             });
         })
-        // Call the updateUI function with new data     
+       /*  // Call the updateUI function with new data     
         .then (async (newData) => {
             await updateUI();
-        });
+        }); */
     }
 };
 
@@ -68,7 +80,12 @@ const updateUI = async() => {
         document.getElementById('placeimage').innerHTML = `<img src="${info.image}" alt="Place image" id="photo">`;
         document.getElementById('place').innerHTML = 'My trip to: ' + info.city.toUpperCase();
         document.getElementById('datedeparture').innerHTML = 'Departure date: ' + info.yearDeparture + '-' + info.monthDeparture + '-' + info.dayDeparture;
-        document.getElementById('temp').innerHTML = 'Actual temperature: ' + info.temp + '°C';
+        if (info.temp !== undefined){
+            document.getElementById('temp').innerHTML = 'Actual temperature: ' + info.temp + '°C';
+        } 
+        if (info.predForecast !== undefined){
+            document.getElementById('predForecast').innerHTML = 'Predicted forecast: ' + info.predForecast + '°C';
+        } 
         document.getElementById('daystotrip').innerHTML =  info.city.toUpperCase() + ', ' + info.country + ' is '  + info.result + ' days away';
     }
     catch (error) {
