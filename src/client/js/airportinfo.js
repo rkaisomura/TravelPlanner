@@ -13,7 +13,7 @@ document.addEventListener('click', event => {
             airportmodal.style.display = "none";
         }
 
-        //List of airports
+        //List of airports at AirLabs
         const airportUrl = `http://airlabs.co/api/v6/airports?api_key=${airportKey}`;
         getAirport(airportUrl)
         .then(function(data){
@@ -28,6 +28,7 @@ document.addEventListener('click', event => {
             }
         })
 
+        //Clicking on Save button
         save.onclick = function() {
             const info = document.getElementById('airportname').value;
             document.getElementById('airportcontent').innerHTML = 'Airport information: ' + info;

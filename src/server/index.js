@@ -46,4 +46,10 @@ app.post('/travelinfo', (req, resp) => {
   resp.send(projectData);
 })
 
+//DELETE route
+app.delete('/travelinfo', (req,res) => {
+  projectData = {};
+  res.send(projectData);
+})
+
 module.exports = app
