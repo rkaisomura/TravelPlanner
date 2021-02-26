@@ -56,7 +56,7 @@ function performAction(e){
             const imageUrl = `http://pixabay.com/api/?key=${APIPixaBay}&q=${city}&image_type=photo`;
             getImage(imageUrl)
             .then(async (imageData) => {
-                const image = imageData.hits[10].webformatURL;
+                const image = imageData.hits[2].webformatURL;
                 console.log(image);
                 await postData('/travelinfo', {image});
             })
@@ -64,10 +64,6 @@ function performAction(e){
                 await updateUI();
             });
         })
-       /*  // Call the updateUI function with new data     
-        .then (async (newData) => {
-            await updateUI();
-        }); */
     }
 };
 
@@ -87,6 +83,7 @@ const updateUI = async() => {
             document.getElementById('predForecast').innerHTML = 'Predicted forecast: ' + info.predForecast + '°C';
         } 
         document.getElementById('daystotrip').innerHTML =  info.city.toUpperCase() + ', ' + info.country + ' is '  + info.result + ' days away';
+        document.getElementById('cancel').innerHTML = '<button class = "cancel">Cancel</button>';
     }
     catch (error) {
         console.log("error", error);

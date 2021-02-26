@@ -9,6 +9,42 @@ body{
     margin-right: 20px;
     }
 
+h1{
+    font-size: 36px;
+    font-weight: 600;
+    color: #ffafcc;
+}
+
+label{
+    display:block;
+    font-size: 27px;
+}
+
+input{
+    height: 40px;
+    color: cdb4db;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    border: solid #a2d2ff;
+}
+
+button {
+    width: 150px;
+    height: 50px;
+    background: $buttonColor;
+    font-size: 26px;
+    font-family: $fontButton;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 2px 4px 5px #444;
+    cursor: pointer;
+}
+
+button:hover {
+    color: #cdb4db;
+    background: cornflowerblue;
+}
+
 #app{
     padding-left: 200px;
     display: flex;
@@ -45,36 +81,6 @@ body{
     font-family: $fontTitle;
 }
 
-label{
-    display:block;
-    font-size: 27px;
-}
-
-input{
-    height: 40px;
-    color: cdb4db;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-    border: solid #a2d2ff;
-}
-
-button {
-    width: 150px;
-    height: 50px;
-    background: $buttonColor;
-    font-size: 26px;
-    font-family: $fontButton;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 2px 4px 5px #444;
-    cursor: pointer;
-}
-
-button:hover {
-    color: #cdb4db;
-    background: cornflowerblue;
-}
-
 #submit {
     height: 35px;
     width: 100px;
@@ -85,12 +91,6 @@ button:hover {
     border-radius: 10px;
     box-shadow: 2px 4px 5px #444;
     cursor: pointer;
-}
-
-h1{
-    font-size: 36px;
-    font-weight: 600;
-    color: #ffafcc;
 }
 
 .packinglist {

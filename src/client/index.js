@@ -17,6 +17,7 @@ import '../client/js/packinglist'
 import '../client/js/airportinfo'
 import '../client/js/flightinfo'
 import '../client/js/app'
+import '../client/js/cancelTrip'
 
 export {
     performAction,
