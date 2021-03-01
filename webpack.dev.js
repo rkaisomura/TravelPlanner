@@ -1,8 +1,9 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebPackPlugin = require("html-webpack-plugin")
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -14,12 +15,12 @@ module.exports = {
     },
     devtool: 'source-map',
     stats: 'verbose',
-     devServer: {
+    devServer: {
         host: 'localhost',
         proxy: {
             context: () => true,
-            target: "http://localhost:8081",
-            secure: false
+            target: 'http://localhost:8081',
+            secure: false,
         }
     }, 
     module: {
@@ -55,8 +56,9 @@ module.exports = {
             verbose: true,
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
-            protectWebpackAssets: false
+            protectWebpackAssets: false,
         }),
-        new Dotenv()
+        new Dotenv(),
+        new WorkboxPlugin.GenerateSW(),
     ]
 }

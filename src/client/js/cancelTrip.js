@@ -14,6 +14,7 @@ document.addEventListener('click', event => {
         document.getElementById('predForecast').innerHTML = '';
         document.getElementById('daystotrip').innerHTML =  '';
         document.getElementById('cancel').innerHTML = '';
+        document.getElementById('flightcontent').innerHTML = '';
         
         //Clear the data at '/travelinfo'
         fetch('http://localhost:8081/travelinfo/', {
