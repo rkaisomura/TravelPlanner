@@ -17,6 +17,7 @@ document.addEventListener('click', event => {
         document.getElementById('flightcontent').innerHTML = '';
         
         //Clear the data at '/travelinfo'
+        //Based on https://medium.com/@9cv9official/what-are-get-post-put-patch-delete-a-walkthrough-with-javascripts-fetch-api-17be31755d28
         fetch('http://localhost:8081/travelinfo/', {
             method: 'DELETE'
         })

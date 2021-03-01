@@ -1,4 +1,5 @@
 //Show modal for the user to info the flight info - it is just a text input
+//Based on> https://www.w3schools.com/howto/howto_css_modals.asp
 
 document.addEventListener('click', event => {
     const element = event.target;
