@@ -1,3 +1,5 @@
+import { getCity } from './getCity.js'
+
 /* Global Variables */
 const userName = process.env.user_geoname; // username of Geonames
 const APIWeatherBit = process.env.API_Weathebit_Key; // API key from Weatherbit
@@ -90,18 +92,7 @@ const updateUI = async() => {
     }
 }
 
-// Async GET
-const getCity = async (baseURL) => {
-    const resp = await fetch (baseURL);
-    console.log(resp);
-    try {
-        const data = await resp.json();
-        console.log(data);
-        return data;
-    } catch (error) {
-        console.log ('Error', error);
-    }
-}
+//Async GET
 
 const getWeather = async (weatherUrl) => {
     const resp = await fetch (weatherUrl);
@@ -156,7 +147,6 @@ document.addEventListener('click', event => {
 
 export { performAction }
 export { updateUI }
-export { getCity }
 export { postData }
 export { getWeather }
 export { getImage }

@@ -1,6 +1,6 @@
 import { performAction } from './js/app'
 import { updateUI } from './js/app'
-import { getCity } from './js/app'
+import { getCity } from './js/getCity'
 import { postData } from './js/app'
 import { getWeather } from './js/app'
 import { getImage } from './js/app'
