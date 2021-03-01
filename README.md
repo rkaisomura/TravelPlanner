@@ -17,10 +17,8 @@ This project requires to build a travel application that allows user plan your t
 * Geonames
 * Weatherbit
 * Pixabay
-* AirLabs
 
 ## Additional functionalities:
-* Airport info - user is able to select the airport through a list of all airports provided by the AirLabs API.
 * Flight info - user is able to write the flight information (Ex.: FL1012).
 * Print this page - user can print the current page.
 * Packing List - user can add a packing list for the trip.
@@ -31,13 +29,6 @@ This project requires to build a travel application that allows user plan your t
     1. Select a date in the field "Departure date: "
     1. Click on the "Generate" button
     1. Trip information will be displayed with a photo of the city, city name, departure date, actual temperature and count how many days is away the present day
-
-* Airport info
-    1. Click on "+airport info" button
-    1. A showmodal is opened
-    1. Select the airport at the dropdown field
-    1. Click on "Save" button
-    1. The airport information will be displayed at "Trip Information"
 
 * Flight info
     1. Click on "+flight info" button
