@@ -26,3 +26,53 @@
         font-size: 15px;
     }
 }
+
+/* Medium Screens */
+@media (min-width: 500px) and (max-width:900px) {
+    .flightmodal {
+        position: relative;
+        width: 210px;
+        height: 90px;
+        .modalinfo{
+            margin: 5px; 
+            width: 200px;
+        }
+        .closeflight{
+            font-size: 25px;
+        }
+        .flightlabel{
+            font-size: 16px;
+            padding-bottom: 10px;
+        }
+        #info{
+            font-size: 14px;
+        }
+    }
+}
+
+/* Small Screens */
+@media (max-width: 499px) {
+    .flight{
+        margin-left: -120px;
+        .flightmodal {
+            position: relative;
+            width: 160px;
+            height: 100px;
+            .modalinfo{
+                width: 150px;
+                margin: 5px;
+            }
+            .closeflight{
+                font-size: 15px;
+            }
+            .flightlabel{
+                font-size: 14px;
+                padding-bottom: 5px;
+            }
+            #info{
+                font-size: 10px;
+                height: 30px;
+            }
+        }
+    }
+}

@@ -133,3 +133,17 @@ button:focus {
     color: #cdb4db; 
     font-family: $fontPlaceholder;
 }
+
+/* Medium ans small Screens */
+@media (max-width:500px) {
+    #app{
+        height: 85vh; 
+        .holder_headline, .holder_trip, .holder_departure, #generate {
+            margin-left: -120px;
+        }
+    }
+    #submit {
+        height: 35px;
+        width: 65px;
+    }
+}

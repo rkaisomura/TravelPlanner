@@ -48,3 +48,9 @@ This project requires to build a travel application that allows user plan your t
     1. Click on "Add" button
     1. An item will be displayed below with a "remove" button
     1. The user can remove an specific item, clicking on "remove" button 
+
+## Code's Particularities
+* Three variables were created in order to start the project. They are defined in .env file and used for the APIs.
+    * user_geoname: this variable is the username for Geonames API
+    * API_Weathebit_Key: this is the API key for Weatherbit
+    * API_Pixabay_Key: API key variable for Pixabay

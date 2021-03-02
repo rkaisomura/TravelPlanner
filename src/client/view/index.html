@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Trip Planner</title>
         <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
@@ -10,14 +11,14 @@
     </head>
     <body>
         <div id = "app">
-            <div class ="holder headline">
+            <div class ="holder_headline">
                 <h1>Travel Planner</h1>
             </div>
-            <div class ="holder trip">
+            <div class ="holder_trip">
                 <label for="trip">My trip to (city):</label>
                 <input type="text" id="city" placeholder="Enter city name" required>
             </div><br>
-            <div class ="holder departure">
+            <div class ="holder_departure">
                 <label for="date">Departure date:</label>
                 <input type="date" class= "myInput" id="date" required>
             </div><br>
@@ -28,7 +29,7 @@
                     <div class="flightmodal" id="flightmodal">
                         <div class="modalinfo">
                             <span class="closeflight">&times;</span>
-                            <label for="flight">Flight Information:</label>
+                            <label for="flight" class="flightlabel">Flight Information:</label>
                             <input type="text" id="info" placeholder="Flight information here">
                             <button id="saveflight" type = "submit"> Save </button><br>
                         </div>

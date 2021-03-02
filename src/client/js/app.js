@@ -6,7 +6,9 @@ const APIWeatherBit = process.env.API_Weathebit_Key; // API key from Weatherbit
 const APIPixaBay = process.env.API_Pixabay_Key; //API key from Pixabay
 
 // Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', performAction);
+document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('generate').addEventListener('click', performAction);
+});
 
 /* Function called by event listener */
 function performAction(e){
@@ -44,8 +46,12 @@ function performAction(e){
                 const temp = weatherData.data[0].temp;
                 console.log(temp);
                 await postData('/travelinfo', {temp});
+                } else if (result > 7 && result < 16){  //The predicted forecast between 8th and 16th day
+                    const predForecast = weatherData.data[result].temp; 
+                    console.log(predForecast);
+                    await postData('/travelinfo', {predForecast});
                 } else {
-                    const predForecast = weatherData.data[8].temp; //The predicted forecast is the 9th day based on the departure date
+                    const predForecast = weatherData.data[15].temp; //If user select a departure date > 16days, the app will show the temperature of the 16th day
                     console.log(predForecast);
                     await postData('/travelinfo', {predForecast});
                 }
@@ -55,10 +61,10 @@ function performAction(e){
             });
 
             //Pixabay API: getting the image from the place
-            const imageUrl = `http://pixabay.com/api/?key=${APIPixaBay}&q=${city}&image_type=photo`;
+            const imageUrl = `http://pixabay.com/api/?key=${APIPixaBay}&q=${city}&category=places&image_type=photo`;
             getImage(imageUrl)
             .then(async (imageData) => {
-                const image = imageData.hits[2].webformatURL;
+                const image = imageData.hits[0].webformatURL;
                 console.log(image);
                 await postData('/travelinfo', {image});
             })
@@ -79,7 +85,7 @@ const updateUI = async() => {
         document.getElementById('place').innerHTML = 'My trip to: ' + info.city.toUpperCase();
         document.getElementById('datedeparture').innerHTML = 'Departure date: ' + info.yearDeparture + '-' + info.monthDeparture + '-' + info.dayDeparture;
         if (info.temp !== undefined){
-            document.getElementById('temp').innerHTML = 'Actual temperature: ' + info.temp + '°C';
+            document.getElementById('temp').innerHTML = 'Actual Temperature: ' + info.temp + '°C';
         } 
         if (info.predForecast !== undefined){
             document.getElementById('predForecast').innerHTML = 'Predicted forecast: ' + info.predForecast + '°C';

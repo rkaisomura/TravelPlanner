@@ -29,3 +29,37 @@ footer {
         color: $footerFontColor;
     }
 }
+
+/* Medium Screens */
+@media (min-width: 600px) and (max-width:900px) {
+    footer {
+        font-size: 16px;
+        #topBtn {
+            margin-left:15%;
+        }
+        p{
+            padding-top: 45px;
+            padding-left: 10%;
+            font-size: 12px;
+        }
+    }
+}
+
+/* Small Screens */
+@media (max-width:599px) {
+    footer {
+        display: flex;
+        flex-direction: column;
+        font-size: 16px;
+        height: auto;
+        #topBtn {
+            margin-left:43%;
+            margin-bottom: 10px;
+        }
+        p{
+            padding-left: 10%;
+            font-size: 12px;
+            padding-top: 0;
+        }
+    }
+}
